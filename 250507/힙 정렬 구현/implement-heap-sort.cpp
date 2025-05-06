@@ -3,7 +3,7 @@
 using namespace std;
 
 int n;
-int arr[110000];
+int arr[210000];
 void swap(int x, int y) {
     int tmp = arr[x];
     arr[x] = arr[y];
