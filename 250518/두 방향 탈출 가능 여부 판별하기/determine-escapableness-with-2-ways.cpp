@@ -2,13 +2,15 @@
 using namespace std;
 int n, m;
 int grid[110][110];
+bool visited[110][110];
 void search(int x, int y) {
     if(x == n - 1 && y == m - 1) {
         printf("1");
         exit(0);
     }
-    if(grid[x + 1][y]) search(x + 1, y);
-    if(grid[x][y + 1]) search(x, y + 1);
+    if(grid[x + 1][y] && !visited[x + 1][y]) search(x + 1, y);
+    if(grid[x][y + 1] && !visited[x][y + 1]) search(x, y + 1);
+    visited[x][y] = true;
 }
 int main() {
     cin >> n >> m;
