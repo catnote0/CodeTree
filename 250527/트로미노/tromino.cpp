@@ -15,7 +15,7 @@ int main() {
     }
 
     for(int i = 1; i < n; i++) {
-        for(int j = 1; j < n; j++) {
+        for(int j = 1; j < m; j++) {
             int s = grid[i - 1][j - 1] + grid[i - 1][j] + grid[i][j - 1] + grid[i][j];
             int m1 = grid[i - 1][j - 1] < grid[i - 1][j] ? grid[i - 1][j - 1] : grid[i - 1][j];
             int m2 = grid[i][j - 1] < grid[i][j] ? grid[i][j - 1] : grid[i][j];
@@ -24,10 +24,14 @@ int main() {
         }
     }
     for(int i = 0; i < n; i++) {
-        for(int j = 2; j < n; j++) {
+        for(int j = 2; j < m; j++) {
             int s = grid[i][j - 2] + grid[i][j - 1] + grid[i][j];
             if(s > result) result = s;
-            s = grid[j - 2][i] + grid[j - 1][i] + grid[j][i];
+        }
+    }
+    for(int i = 0; i < m; i++) {
+        for(int j = 2; j < n; j++) {
+            int s = grid[j - 2][i] + grid[j - 1][i] + grid[j][i];
             if(s > result) result = s;
         }
     }
