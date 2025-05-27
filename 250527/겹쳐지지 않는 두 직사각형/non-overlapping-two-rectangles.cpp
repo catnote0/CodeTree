@@ -31,14 +31,14 @@ int main() {
             cin >> grid[i][j];
         }
     }
-    for(int l1 = 0; l1 < n; l1++) {
-        for(int r1 = l1; r1 < n; r1++) {
-            for(int u1 = 0; u1 < n; u1++) {
-                for(int d1 = u1; d1 < n; d1++) {
-                    for(int l2 = 0; l2 < n; l2++) {
-                        for(int r2 = l2; r2 < n; r2++) {
-                            for(int u2 = 0; u2 < n; u2++) {
-                                for(int d2 = u2; d2 < n; d2++) {
+    for(int u1 = 0; u1 < n; u1++) {
+        for(int d1 = u1; d1 < n; d1++) {
+            for(int l1 = 0; l1 < m; l1++) {
+                for(int r1 = l1; r1 < m; r1++) {
+                    for(int u2 = 0; u2 < n; u2++) {
+                        for(int d2 = u2; d2 < n; d2++) {
+                            for(int l2 = 0; l2 < m; l2++) {
+                                for(int r2 = l2; r2 < m; r2++) {
                                     Check(l1, r1, u1, d1, l2, r2, u2, d2);
                                 }
                             }
