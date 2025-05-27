@@ -13,6 +13,10 @@ int main() {
             cin >> grid[i][j];
         }
     }
+    if(m == 1) {
+        cout << n * 2;
+        return 0;
+    }
     for(int i = 0; i < n; i++) {
         int rowcombo = 1, columncombo = 1;
         bool rowhappy = false, columnhappy = false;
