@@ -39,7 +39,7 @@ int main() {
                         for(int d2 = u2; d2 < n; d2++) {
                             for(int l2 = 0; l2 < m; l2++) {
                                 for(int r2 = l2; r2 < m; r2++) {
-                                    Check(l1, r1, u1, d1, l2, r2, u2, d2);
+                                    Check(u1, d1, l1, r1, u2, d2, l2, r2);
                                 }
                             }
                         }
