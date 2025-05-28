@@ -1,21 +1,26 @@
+from collections import deque
+
+spread_dir = {'D': 1, 'U': -1}
+wind_dir = {'L': 1, 'R': -1}
+oppo = {'L': 'R', 'R': 'L'}
+
 n, m, q = map(int, input().split())
-a = [list(map(int, input().split())) for _ in range(n)]
+a = [deque(list(map(int, input().split()))) for _ in range(n)]
 winds = [(int(r), d) for r, d in [input().split() for _ in range(q)]]
 
 def Spread(row, Sdrc, drc):
-    if row < 0 or row >= n: return
-    StopSpread = True
-    for i in range(m):
-        if a[row][i] == a[row + (-1 if Sdrc == 'D' else 1)][i]: StopSpread = False
-    if StopSpread: return
-    a[row] = (a[row][(m - 1):] + a[row][:(m - 1)]) if drc == 'L' else (a[row][1:] + a[row][:1])
-    Spread(row + (1 if Sdrc == 'D' else -1), Sdrc, 'R' if drc == 'L' else 'L')
+    while True:
+        if row < 0 or row >= n: return
+        if not any(x == y for x, y in zip(a[row], a[row - spread_dir[Sdrc]])): return
+        a[row].rotate(wind_dir[drc])
+        row += spread_dir[Sdrc]
+        drc = oppo[drc]
 
 def Blow(wind):
     (row, drc) = (wind[0] - 1, wind[1])
-    a[row] = (a[row][(m - 1):] + a[row][:(m - 1)]) if drc == 'L' else (a[row][1:] + a[row][:1])
-    Spread(row + 1, 'D', 'R' if drc == 'L' else 'L')
-    Spread(row - 1, 'U', 'R' if drc == 'L' else 'L')
+    a[row].rotate(wind_dir[drc])
+    Spread(row + 1, 'D', oppo[drc])
+    Spread(row - 1, 'U', oppo[drc])
 
 for wind in winds: Blow(wind)
 
