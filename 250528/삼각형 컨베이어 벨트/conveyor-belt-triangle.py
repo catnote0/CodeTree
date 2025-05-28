@@ -1,8 +1,8 @@
+n_conv = 3
+
 n, t = map(int, input().split())
-t %= (n * 3)
+t %= (n * n_conv)
 arr = []
-for i in range(3): arr += input().split()
-arr = arr[(n * 3 - t):(n * 3)] + arr[:(n * 3 - t)]
-print(*arr[:n])
-print(*arr[n:(n * 2)])
-print(*arr[(n * 2):])
+for i in range(n_conv): arr += input().split()
+arr = arr[(n * n_conv - t):(n * n_conv)] + arr[:(n * n_conv - t)]
+for i in range(n_conv): print(*arr[(n * i) : (n * (i + 1))])
