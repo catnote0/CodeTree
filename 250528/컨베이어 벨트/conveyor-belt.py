@@ -1,8 +1,8 @@
-n, t = map(int, input().split())
-u = list(map(int, input().split()))
-d = list(map(int, input().split()))
+n_conv = 2
 
-t %= (n * 2)
-r1 = " ".join(map(str, d[(n - t % n):n] + u[:(n - t % n)]))
-r2 = " ".join(map(str, u[(n - t % n):n] + d[:(n - t % n)]))
-print(r1 + "\n" + r2 if t < n else r2 + "\n" + r1)
+n, t = map(int, input().split())
+t %= (n * n_conv)
+arr = []
+for i in range(n_conv): arr += input().split()
+arr = arr[(n * n_conv - t):(n * n_conv)] + arr[:(n * n_conv - t)]
+for i in range(n_conv): print(*arr[(n * i) : (n * (i + 1))])
