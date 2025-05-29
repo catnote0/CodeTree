@@ -1,4 +1,4 @@
-n, m, k = map(int, input().split())
+n, m, repeat = map(int, input().split())
 numbers_2d = [list(map(int, input().split())) for _ in range(n)]
 
 if m == 1:
@@ -33,7 +33,7 @@ def rotate():
         for j in range(n): after_rotate[j][n - i - 1] = numbers_2d[i][j]
     for i in range(n): numbers_2d[i] = after_rotate[i][:]
 
-for _ in range(k):
+for _ in range(repeat):
     explode()
     drop()
     rotate()
