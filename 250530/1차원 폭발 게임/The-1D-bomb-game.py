@@ -2,6 +2,7 @@ n, m = map(int, input().split())
 numbers = [int(input()) for _ in range(n)]
 
 while True:
+    if not numbers: break
     combo = 1
     for i in range(1, len(numbers)):
         if numbers[i - 1] == numbers[i]: combo += 1
