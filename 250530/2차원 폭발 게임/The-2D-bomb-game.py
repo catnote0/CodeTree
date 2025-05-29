@@ -6,17 +6,24 @@ if m == 1:
     exit(0)
 
 def explode():
+    exploded = False
     for i in range(n):
         combo = 1
         for j in range(1, n):
+            if numbers_2d[j][i] == 0: continue
             if numbers_2d[j - 1][i] == numbers_2d[j][i]: combo += 1
             else:
                 if combo >= m:
-                    for k in range(j - combo, j): numbers_2d[k][i] = 0
+                    for k in range(j - combo, j):
+                        numbers_2d[k][i] = 0
+                        exploded = True
                 combo = 1
         if combo >= m:
-            for k in range(n - combo, n): numbers_2d[k][i] = 0
-
+            for k in range(n - combo, n):
+                numbers_2d[k][i] = 0
+                exploded = True
+    return exploded
+    
 def drop():
     after_drop = [[0] * n for _ in range(n)]
     for i in range(n):
@@ -34,12 +41,10 @@ def rotate():
     for i in range(n): numbers_2d[i] = after_rotate[i][:]
 
 for _ in range(repeat):
-    explode()
-    drop()
+    while explode(): drop()
     rotate()
     drop()
 
-explode()
-drop()
+while explode(): drop()
 
 print(sum(sum(num != 0 for num in row) for row in numbers_2d))
