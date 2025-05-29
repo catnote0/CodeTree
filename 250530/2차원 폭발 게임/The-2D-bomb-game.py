@@ -13,7 +13,7 @@ def explode():
             else:
                 if combo >= m:
                     for k in range(j - combo, j): numbers_2d[k][i] = 0
-                    combo = 1
+                combo = 1
         if combo >= m:
             for k in range(n - combo, n): numbers_2d[k][i] = 0
 
