@@ -32,7 +32,7 @@ def turn(where, drc):
 
 time = 0
 while True:
-    if time > 10:
+    if time > 10000:
         print(-1)
         exit(0)
     if grid[x][y] == EXIT:
