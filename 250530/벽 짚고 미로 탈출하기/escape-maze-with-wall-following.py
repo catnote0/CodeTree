@@ -39,8 +39,11 @@ while True:
         print(time)
         exit(0)
     rx, ry = get_right(x, y, drc)
-    fx, fy = get_forward(x, y, drc)
     if grid[rx][ry] != WALL: drc = turn('Right', drc)
-    elif grid[fx][fy] == WALL: drc = turn('LEFT', drc)
+    else:
+        while True:
+            fx, fy = get_forward(x, y, drc)
+            if grid[fx][fy] == WALL: drc = turn('LEFT', drc)
+            else: break
     x, y = go_forward(x, y, drc)
     time += 1
