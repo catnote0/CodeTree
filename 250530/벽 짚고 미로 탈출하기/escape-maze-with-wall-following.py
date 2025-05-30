@@ -14,6 +14,12 @@ for i in range(1, N + 1):
         grid[i][j] = row[j - 1]
 drc = 'R'
 
+def check_isolated(x, y):
+    for dx, dy in [(-1, 0), (0, -1), (0, 1), (1, 0)]:
+        if grid[x + dx][y + dy] != WALL: return
+    print(-1)
+    exit(0)
+
 def get_forward(x, y, drc):
     dx, dy = FORWARD[drc]
     return (x + dx, y + dy)
@@ -30,6 +36,7 @@ def turn(where, drc):
     if where == 'Right': return DRC[(DRC.index(drc) + 1) % 4]
     return DRC[DRC.index(drc) - 1]
 
+check_isolated(x, y)
 time = 0
 while True:
     if time > 10000:
