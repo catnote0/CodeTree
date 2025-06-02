@@ -34,4 +34,4 @@ for _ in range(t):
                     if bead[0] != winner: live[bead[0]] = False
                 w[winner] = weight
 
-print(sum(live), max(w[i] for i in range(n) if live[i]))
+print(sum(live), max(w[i] for i in range(m) if live[i]))
