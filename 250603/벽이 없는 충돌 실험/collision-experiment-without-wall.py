@@ -1,6 +1,6 @@
 T = int(input())
-drc = {'L': (-0.5, 0), 'R': (0.5, 0), 'U': (0, 0.5), 'D': (0, -0.5)}
-BOUNDARY = 1100
+drc = {'L': (-1, 0), 'R': (1, 0), 'U': (0, 1), 'D': (0, -1)}
+BOUNDARY = 2000
 
 for _ in range(T):
     N = int(input())
@@ -8,8 +8,8 @@ for _ in range(T):
 
     for i in range(N):
         xi, yi, wi, di = input().split()
-        x.append(float(xi))
-        y.append(float(yi))
+        x.append(int(xi) * 2)
+        y.append(int(yi) * 2)
         w.append(int(wi))
         d.append(di)
 
