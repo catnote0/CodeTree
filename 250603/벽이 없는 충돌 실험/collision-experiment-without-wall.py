@@ -23,11 +23,11 @@ for _ in range(T):
         t += 1
         strong_bead.clear()
         for i in range(N):
+            if not live[i]: continue
             if x[i] < -BOUNDARY or BOUNDARY < x[i] or y[i] < -BOUNDARY or BOUNDARY < y[i]:
                 live[i] = False
                 alive_bead -= 1
                 continue
-            if not live[i]: continue
             x[i], y[i] = x[i] + drc[d[i]][0], y[i] + drc[d[i]][1]
             pri = w[i] * 1000 + i;
             xy = x[i] * 10000 + y[i]
