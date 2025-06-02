@@ -25,12 +25,15 @@ for _ in range(T):
             if x[i] < -BOUNDARY or BOUNDARY < x[i] or y[i] < -BOUNDARY or BOUNDARY < y[i]: live[i] = False
             if not live[i]: continue
             x[i], y[i] = x[i] + drc[d[i]][0], y[i] + drc[d[i]][1]
-            if (x[i], y[i]) in strong_bead:
-                if strong_bead[(x[i], y[i])] > (w[i], i): live[i] = False
+            pri = w[i] * 1000 + i;
+            xy = x[i] * 10000 + y[i]
+            if xy in strong_bead:
+                now_pri = strong_bead[xy]
+                if now_pri > pri: live[i] = False
                 else:
-                    live[strong_bead[(x[i], y[i])][1]] = False
-                    strong_bead[(x[i], y[i])] = (w[i], i)
+                    live[now_pri % 1000] = False
+                    strong_bead[xy] = pri
                 last_collide = t
-            else: strong_bead[(x[i], y[i])] = (w[i], i)
+            else: strong_bead[xy] = pri
 
     print(last_collide)
