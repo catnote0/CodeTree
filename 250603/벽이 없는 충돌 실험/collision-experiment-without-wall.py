@@ -1,6 +1,5 @@
 T = int(input())
 drc = {'L': (-1, 0), 'R': (1, 0), 'U': (0, 1), 'D': (0, -1)}
-BOUNDARY = 2000
 strong_bead = {}
 
 for _ in range(T):
@@ -17,6 +16,7 @@ for _ in range(T):
     t = 0
     last_collide = -1
     alive_bead = N
+    min_x, max_x, min_y, max_y = min(x), max(x), min(y), max(y)
 
     while True:
         if alive_bead <= 1: break
@@ -24,7 +24,7 @@ for _ in range(T):
         strong_bead.clear()
         for i in range(N):
             if not live[i]: continue
-            if x[i] < -BOUNDARY or BOUNDARY < x[i] or y[i] < -BOUNDARY or BOUNDARY < y[i]:
+            if x[i] < min_x or max_x < x[i] or y[i] < min_y or max_y < y[i]:
                 live[i] = False
                 alive_bead -= 1
                 continue
