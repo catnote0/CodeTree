@@ -15,11 +15,7 @@ for _ in range(k):
                 nx, ny = x + dx, y + dy
                 if nx < 0 or nx >= n or ny < 0 or ny >= n: continue
                 if visited[nx][ny] or grid[nx][ny] >= v: continue
-                if nv < grid[nx][ny]: nr, nc, nv = nx, ny, grid[nx][ny]
-                elif nv == grid[nx][ny]:
-                    if nx < nr: nr, nc, nv = nx, ny, grid[nx][ny]
-                    elif nx == nr:
-                        if ny < nc: nr, nc, nv = nx, ny, grid[nx][ny]
+                if (grid[nx][ny], -nx, -ny) > (nv, -nr, nc): nr, nc, nv = nx, ny, grid[nx][ny]
                 visited[nx][ny] = True
                 tmpQueue.append([nx, ny])
         if not tmpQueue: break
