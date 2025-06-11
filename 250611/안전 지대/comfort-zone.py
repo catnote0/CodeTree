@@ -10,7 +10,7 @@ def fill(x, y, h):
         if nx < 0 or n <= nx or ny < 0 or m <= ny: continue
         if grid[nx][ny] > h and not check[nx][ny]: fill(nx, ny, h)
 
-result = 0
+result = -1
 result_K = 0
 
 for K in range(1, 100):
