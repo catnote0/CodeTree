@@ -13,5 +13,4 @@ for i in range(1, n):
                 dp[i][j] = max(dp[i][j], dp[k][l] + 1)
                 result = max(result, dp[i][j])
 
-print(*dp)
 print(result)
