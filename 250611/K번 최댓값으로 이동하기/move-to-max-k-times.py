@@ -1,34 +1,31 @@
-import sys
-sys.setrecursionlimit(10 ** 6)
-
 n, k = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 r, c = map(int, input().split())
-r -= 1
-c -= 1
-
+r, c = r - 1, c - 1
 drc = [(-1, 0), (0, -1), (0, 1), (1, 0)]
-visited = []
-nr, nc, nv = 0, 0, 0
-
-def search(x, y, value):
-    global nr, nc, nv
-    for dx, dy in drc:
-        nx, ny = x + dx, y + dy
-        if nx < 0 or n <= nx or ny < 0 or n <= ny: continue
-        if visited[nx][ny] or grid[nx][ny] >= value: continue
-        visited[nx][ny] = True
-        if nv < grid[nx][ny]: nr, nc, nv = nx, ny, grid[nx][ny]
-        elif nv == grid[nx][ny]:
-            if nx < nr: nr, nc, nv = nx, ny, grid[nx][ny]
-            elif nx == nr:
-                if ny < nc: nr, nc, nv = nx, ny, grid[nx][ny]
-        search(nx, ny, value)
+visited = [[False] * n for _ in range(n)]
 
 for _ in range(k):
-    visited = [[False] * n for _ in range(n)]
-    nr, nc, nv = r, c, 0
-    search(r, c, grid[r][c])
+    Queue = [[r, c]]
+    v, nr, nc, nv = grid[r][c], r, c, 0
+    while True:
+        tmpQueue = []
+        for x, y in Queue:
+            for dx, dy in drc:
+                nx, ny = x + dx, y + dy
+                if nx < 0 or nx >= n or ny < 0 or ny >= n: continue
+                if visited[nx][ny] or grid[nx][ny] >= v: continue
+                if nv < grid[nx][ny]: nr, nc, nv = nx, ny, grid[nx][ny]
+                elif nv == grid[nx][ny]:
+                    if nx < nr: nr, nc, nv = nx, ny, grid[nx][ny]
+                    elif nx == nr:
+                        if ny < nc: nr, nc, nv = nx, ny, grid[nx][ny]
+                visited[nx][ny] = True
+                tmpQueue.append([nx, ny])
+        if not tmpQueue: break
+        Queue = tmpQueue
     r, c = nr, nc
+    for i in range(n):
+        for j in range(n): visited[i][j] = False
 
 print(r + 1, c + 1)
