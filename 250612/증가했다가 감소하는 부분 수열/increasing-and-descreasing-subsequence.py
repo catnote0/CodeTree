@@ -1,7 +1,7 @@
 n = int(input())
 sequence = list(map(int, input().split()))
-dp = [1] + [0] * (n - 1)
-dp_rev = [0] * (n - 1) + [1]
+dp = [0] * n
+dp_rev = [0] * n
 
 for i in range(n):
     max_value = 0
