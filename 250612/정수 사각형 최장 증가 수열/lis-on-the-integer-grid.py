@@ -1,10 +1,11 @@
 n = int(input())
 grid = [list(map(int, input().split())) for _ in range(n)]
 drc = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+Queue = []
 result = 0
 
-def BFS(x, y):
-    Queue = [[x, y]]
+def BFS():
+    global Queue
     T = 0
     while True:
         T += 1
@@ -26,6 +27,6 @@ for x in range(n):
             if grid[nx][ny] > grid[x][y]:
                 highest = False
                 break
-        if highest: result = max(result, BFS(x, y))
+        if highest: Queue.append([x, y])
 
-print(result)
+print(BFS())
