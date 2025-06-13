@@ -1,7 +1,8 @@
 n = int(input())
 coin = [0] + list(map(int, input().split()))
 
-DP = [[0] * 4 for _ in range(n + 1)]
+DP = [[-0x7FFFFFFF] * 4 for _ in range(n + 1)]
+DP[0][0] = 0
 DP[1][1] = coin[1]
 
 for i in range(2, n + 1):
