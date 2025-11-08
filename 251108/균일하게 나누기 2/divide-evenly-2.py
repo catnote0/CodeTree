@@ -24,14 +24,14 @@ for x, y in points:
 for i in range(1, MAX):
     for j in range(1, MAX):
         top[i][j] = top[i - 1][j] + coordinate[i][j]
-        bottom[MAX - i][j] = bottom[MAX - i + 1][j] + coordinate[i][j]
+        bottom[MAX - i][j] = bottom[MAX - i + 1][j] + coordinate[MAX - i][j]
 
 for i in range(1, MAX):
     for j in range(1, MAX):
         lefttop[i][j] = lefttop[i][j - 1] + top[i - 1][j] + coordinate[i][j]
-        righttop[i][j] = righttop[i][j + 1] + top[i - 1][j] + coordinate[i][j]
-        leftbottom[MAX - i][j] = leftbottom[MAX - i][j - 1] + bottom[MAX - i + 1][j] + coordinate[i][j]
-        rightbottom[MAX - i][j] = rightbottom[MAX - i][j + 1] + bottom[MAX - i + 1][j] + coordinate[i][j]
+        righttop[i][MAX - j] = righttop[i][MAX - j + 1] + top[i - 1][MAX - j] + coordinate[i][MAX - j]
+        leftbottom[MAX - i][j] = leftbottom[MAX - i][j - 1] + bottom[MAX - i + 1][j] + coordinate[MAX - i][j]
+        rightbottom[MAX - i][MAX - j] = rightbottom[MAX - i][MAX - j + 1] + bottom[MAX - i + 1][MAX - j] + coordinate[MAX - i][MAX - j]
 
 Result = 0x7FFFFFFF
 for i in range(1, MAX):
