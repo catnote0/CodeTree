@@ -27,7 +27,7 @@ while True:
         OuterCount[arr[right]] -= 1
         if OuterCount[arr[right]] == 0: OuterUnique -= 1
     else:
-        Result = min(Result, right - left + 1)
+        if OuterUnique == m: Result = min(Result, right - left + 1)
         OuterCount[arr[left]] += 1
         if OuterCount[arr[left]] == 1: OuterUnique += 1
         InnerCount[arr[left]] -= 1
