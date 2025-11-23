@@ -11,3 +11,5 @@ for i, a_i in enumerate(a):
         print(i)
         exit(0)
     S.remove(S[opt])
+
+print(len(a))
