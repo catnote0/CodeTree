@@ -37,14 +37,14 @@ for i in range(Q):
     b_next = NodeList[b[i]].next
     c_prev = NodeList[c[i]].prev
     d_next = NodeList[d[i]].next
-    if c_prev.data == b[i]:
+    if c_prev is not None and c_prev.data == b[i]:
         NodeList[c[i]].prev = a_prev
         NodeList[d[i]].next = NodeList[a[i]]
         NodeList[a[i]].prev = NodeList[d[i]]
         NodeList[b[i]].next = d_next
         if a_prev is not None: a_prev.next = NodeList[c[i]]
         if d_next is not None: d_next.prev = NodeList[b[i]]
-    elif a_prev.data == d[i]:
+    elif a_prev is not None and a_prev.data == d[i]:
         NodeList[a[i]].prev = c_prev
         NodeList[b[i]].next = NodeList[c[i]]
         NodeList[c[i]].prev = NodeList[b[i]]
