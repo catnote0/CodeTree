@@ -6,5 +6,5 @@ query = list(map(int, input().split()))
 
 for q in query:
     pos = bisect.bisect_left(arr, q)
-    if arr[pos] != q: print(-1)
+    if pos >= n or arr[pos] != q: print(-1)
     else: print(pos + 1)
