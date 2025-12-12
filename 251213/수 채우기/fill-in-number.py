@@ -11,5 +11,5 @@ def solve(n):
     ans[n] = min(solve(n - 2), solve(n - 5)) + 1
     return ans[n]
 
-
-print(solve(n))
+Result = solve(n)
+print(-1 if Result >= inf else Result)
