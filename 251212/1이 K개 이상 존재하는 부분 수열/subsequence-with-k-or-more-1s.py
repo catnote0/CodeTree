@@ -16,4 +16,4 @@ while True:
         if arr[left] == 1: one -= 1
         left += 1
 
-print(Result)
+print(-1 if Result == 0x7FFFFFFF else Result)
