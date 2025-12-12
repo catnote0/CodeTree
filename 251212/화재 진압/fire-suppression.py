@@ -11,6 +11,7 @@ Result = 0
 for f in range(n):
     while s < m and stations[s] < fires[f]: s += 1
     if s > 0: Result = max(Result, abs(stations[s - 1] - fires[f]))
-    if s < m: Result = max(Result, abs(stations[s] - fires[f]))
+    elif s < m: Result = max(Result, abs(stations[s] - fires[f]))
+    else: Result = max(Result, min(abs(stations[s - 1] - fires[f]), abs(stations[s] - fires[f])))
 
 print(Result)
