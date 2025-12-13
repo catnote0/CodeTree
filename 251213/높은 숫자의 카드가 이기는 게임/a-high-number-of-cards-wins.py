@@ -1,6 +1,6 @@
 N = int(input())
 B = [int(input()) for _ in range(N)]
-A = [i for i in range(1, N * 2 + 1) if i not in B]
+A = list(set(range(1, N * 2 + 1)) - set(B))
 
 B.sort()
 a = 0
