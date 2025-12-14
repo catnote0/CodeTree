@@ -1,8 +1,9 @@
+import sys
 import heapq
 
-n, m = map(int, input().split())
-k = int(input())
-edges = [tuple(map(int, input().split())) for _ in range(m)]
+n, m = map(int, sys.stdin.readline().split())
+k = int(sys.stdin.readline())
+edges = [tuple(map(int, sys.stdin.readline().split())) for _ in range(m)]
 edges_reverse = [(e, s, v) for (s, e, v) in edges]
 edges += edges_reverse
 
