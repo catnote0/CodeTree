@@ -1,33 +1,30 @@
 import sys
 import heapq
 
-n, m = map(int, sys.stdin.readline().split())
-k = int(sys.stdin.readline())
-edges = [tuple(map(int, sys.stdin.readline().split())) for _ in range(m)]
-edges_reverse = [(e, s, v) for (s, e, v) in edges]
-edges += edges_reverse
+input = sys.stdin.readline
+n, m = map(int, input().split())
+k = int(input())
+edges = [tuple(map(int, input().split())) for _ in range(m)]
 
-inf = 10**10
-edges.sort()
-edge_info = [-1] * (n + 2)
-for i, (s, _, _) in enumerate(edges): edge_info[s] = i if edge_info[s] == -1 else edge_info[s]
-edge_info[n + 1] = m * 2
-for i in range(n, 0, -1): edge_info[i] = edge_info[i + (1 if edge_info[i] == -1 else 0)]
+inf = 10 ** 10
+edge_list = [[] for _ in range(n + 1)]
+for start, end, weight in edges:
+    edge_list[start].append((end, weight))
+    edge_list[end].append((start, weight))
 
 Result = [inf] * (n + 1)
 
 def dijkstra(start):
     Result[start] = 0
     pq = []
-    for i in range(1, n + 1): heapq.heappush(pq, (Result[i], i))
+    heapq.heappush(pq, (0, start))
     while pq:
-        dist, pos = heapq.heappop(pq)
-        if dist > Result[pos]: continue
-        for i in range(edge_info[pos], edge_info[pos + 1]):
-            s, e, v = edges[i]
-            if dist + v < Result[e]:
-                Result[e] = dist + v
-                heapq.heappush(pq, (Result[e], e))
+        dist, curr = heapq.heappop(pq)
+        if dist > Result[curr]: continue
+        for end, weight in edge_list[curr]:
+            if dist + weight < Result[end]:
+                Result[end] = dist + weight
+                heapq.heappush(pq, (Result[end], end))
     for i in range(1, n + 1): print(-1 if Result[i] == inf else Result[i])
 
 dijkstra(k)
