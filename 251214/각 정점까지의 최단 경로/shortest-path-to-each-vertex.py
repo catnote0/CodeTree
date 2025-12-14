@@ -10,7 +10,7 @@ inf = 10**10
 edges.sort()
 edge_info = [-1] * (n + 2)
 for i, (s, _, _) in enumerate(edges): edge_info[s] = i if edge_info[s] == -1 else edge_info[s]
-edge_info[n + 1] = m
+edge_info[n + 1] = m * 2
 for i in range(n, 0, -1): edge_info[i] = edge_info[i + (1 if edge_info[i] == -1 else 0)]
 
 Result = [inf] * (n + 1)
